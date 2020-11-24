@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiang.dao.LoginMapper">
+    <insert id="addLogin" parameterType="Login">
+        INSERT INTO loginnew(id,password)
+        VALUES(#{id},#{password});
+    </insert>
+
+    <delete id="deleteLoginById" parameterType="int">
+        delete from loginnew where id = #{loginId}
+    </delete>
+
+    <insert id="updateLogin" parameterType="Login">
+        update loginnew
+        set password = #{password}
+        where id=#{id};
+    </insert>
+
+    <select id="queryLoginById"  resultType="Login">
+    select * from loginnew where id = #{id}
+  </select>
+
+
+</mapper>

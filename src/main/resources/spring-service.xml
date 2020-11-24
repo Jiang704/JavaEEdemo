@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--    <import resource="classpath:spring-dao.xml"/>-->
+    <!--    1.关联数据库配置文件-->
+    <context:component-scan base-package="com.jiang.service"/>
+
+    <!--    2.将所有业务类注入到Spring-->
+    <bean id="studentServiceImpl" class="com.jiang.service.StudentServiceImpl">
+        <property name="studentMapper" ref="studentMapper"/>
+    </bean>
+
+    <bean id="loginServiceImpl" class="com.jiang.service.LoginServiceImpl">
+        <property name="loginMapper" ref="loginMapper"/>
+    </bean>
+    <!--  3.声明式事务配置  -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!--    4.aop事务支持-->
+</beans>
